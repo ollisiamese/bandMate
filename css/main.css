@@ -1,0 +1,10 @@
+.general {
+	border: 1px solid black;
+}
+
+.center-block {
+  display: block;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}
