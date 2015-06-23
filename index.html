@@ -19,18 +19,28 @@
     <![endif]-->
   </head>
   <body ng-app='mainApp'>
-    <div class="container-fluid">
+    <div class="container-fluid" id='topContainer' ng-controller='mainController'>
 		<!-- Search form and video player -->
-		<div class='row general' id='topContainer' ng-controller='mainController'>
+		<div class='row general'>
 			<h1>Working app</h1>
 			<input type='text' id='nameInput' ng-model='searchQueryString'/>
-			<button id='searchBtn' ng-click='searchYoutube()'>Search</button>
+			<button id='searchBtn' ng-click='searchArtist()'>Search</button>
 			
-			<!--div to be replaced by the youtube player-->
-			<div id='player' class="center-block">
-				<span>player here...</span>
-				<player-box></player-box>
-			</div>
+			<section id='artistInfo'>
+				
+				<div ng-show='artistAvailable'>
+					Artist data available for <span>{{artistData.displayName}}</span>
+					<p>Artist: <a ng-attr-href='{{artistData.uri}}'>{{artistData.displayName}}</a></p>
+					<p>Touring until: {{artistData.onTourUntil | date}}</p>
+					<p></p>
+					<p></p>
+				</div>
+				
+				<div ng-show='errorMsg.length > 0'>
+					<span>{{errorMsg}}</span>
+				</div>
+			</section>
+			
 		</div>
 		
 		<div class='row'>
@@ -42,9 +52,20 @@
 			</div>
 			
 			<!--Youtube results-->
-			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general' id='youtube_results_container'>
-				<p>(Youtube search)</p>
-				<videos-list></videos-list>
+			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general'>
+				
+				<!--div to be replaced by the youtube player-->
+				<div id='player' class="center-block">
+					
+					<span>player here...</span>
+					<player-box></player-box>
+				</div>
+				
+				<div id='youtube_results_container'>
+
+					<p>(Youtube search)</p>
+					<videos-list></videos-list>
+				</div>
 				
 			</div>
 		</div>
@@ -55,7 +76,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 	<script src='js/angular.min.js'></script>
-	<script src='js/api_keys.js'></script>
+	<script src='api-keys/api_keys.js'></script>
 	<script src='js/youtube_player.js'></script>
 	<script src="js/youtube_area.js"></script>
 	
@@ -63,6 +84,8 @@
 	<script src="js/playerModule.js"></script>
 	<script src="js/eventsListModule.js"></script>
 	<script src="js/videosListModule.js"></script>
+	<script src="js/searchService.js"></script>
+	<script src="js/playerService.js"></script>
 	
 	
   </body>
