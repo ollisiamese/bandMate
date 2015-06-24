@@ -10,23 +10,30 @@
 		alert('hi');
 	};
 	
-	function searchYoutubeVideos(bandName, successCallback, errorCallback) {
+	//	Optional param pageToken for retrieving next/prev videos
+	function searchYoutubeVideos(bandName, successCallback, errorCallback, pageToken) {
 		
 		var apiKey = API_KEYS.YouTube_key;
 		
+		var searchUrl = 'https://www.googleapis.com/youtube/v3/search';
+		
+		if(pageToken) {
+			
+			searchUrl += '?pageToken=' + pageToken;
+		}
+		
 		var req = {
-			url: 'https://www.googleapis.com/youtube/v3/search',
+			url: searchUrl,//'https://www.googleapis.com/youtube/v3/search',
 			method: 'GET',
 			params: {
 				
-				part: 'snippet',
-				order: 'relevance',
+				part		: 'snippet',
+				order		: 'date',//'relevance',
 				//publishedAfter: format:RFC 3339 formatted date-time value (1970-01-01T00:00:00Z)
-				q: bandName,
-				type: 'video',
-				key: apiKey
+				q			: bandName,
+				type		: 'video',
+				key			: apiKey
 			},
-			
 		};
 		
 		$http(req)
@@ -41,14 +48,13 @@
 		var apiKey = API_KEYS.Songkick_key;
 		
 		var req = {
-			url: 'http://api.songkick.com/api/3.0/search/artists.json',
-			method: 'GET',
-			params: {
+			url				: 'http://api.songkick.com/api/3.0/search/artists.json',
+			method			: 'GET',
+			params			: {
 				
-				query: artistName,
-				apikey: apiKey
-			},
-			
+							query: artistName,
+							apikey: apiKey
+						},
 		};
 		
 		$http(req)
@@ -56,12 +62,42 @@
 		.error(function(err) {errorCallback(err);});
 		
 	};
+	
+	
+	function searchArtistEvents(artistId, successCallback, errorCallback, pageNum) {
+	
+		var apiKey = API_KEYS.Songkick_key;
+		
+		var searchUrl = 'http://api.songkick.com/api/3.0/artists/' + artistId + '/calendar.json';
+		
+		if(pageNum) {
+		
+			searchUrl += '?page=' + pageNum;
+		}
+		
+		var req = {
+			url				: searchUrl,
+			method			: 'GET',
+			params			: {
+							
+							//	As a rule in this app, retrieve 10 shows per page
+							per_page: 10, 
+							apikey	: apiKey
+						},
+		};
+		
+		$http(req)
+		.success(function(data) {successCallback(data);})
+		.error(function(err) {errorCallback(err);});
+	
+	};
 	  
 	return {
 		
 		greet				: greet,
 		searchArtist		: searchArtist,
-		searchYoutubeVideos	: searchYoutubeVideos
+		searchYoutubeVideos	: searchYoutubeVideos,
+		searchArtistEvents	: searchArtistEvents
 	};
 	
 	}]);

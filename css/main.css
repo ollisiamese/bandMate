@@ -8,3 +8,10 @@
   margin-right: 10%;
   width: 80%;
 }
+
+.loadingImg {
+	background: url('../img/ajax-loader.gif') no-repeat;
+	width: 30px;
+	height: 30px;
+	margin-left: 20%;
+}

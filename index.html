@@ -22,18 +22,26 @@
     <div class="container-fluid" id='topContainer' ng-controller='mainController'>
 		<!-- Search form and video player -->
 		<div class='row general'>
-			<h1>Working app</h1>
-			<input type='text' id='nameInput' ng-model='searchQueryString'/>
-			<button id='searchBtn' ng-click='searchArtist()'>Search</button>
+			<h1>BandMate (Band video and touring schedule search)</h1>
 			
+			<form name='searchForm' ng-submit='searchArtist()' novalidate>
+				<input type='text' name='nameInput' ng-model='searchQueryString' required/>
+				<input type='submit' id='searchBtn' value='Search' />
+				<span style='color:red' ng-show='searchForm.nameInput.$dirty && searchForm.nameInput.$error.required'>Please enter an artist's name</span>
+				
+			</form>
 			<section id='artistInfo'>
+				
+				<div class='loadingImg' ng-show='searching'></div>
 				
 				<div ng-show='artistAvailable'>
 					Artist data available for <span>{{artistData.displayName}}</span>
 					<p>Artist: <a ng-attr-href='{{artistData.uri}}'>{{artistData.displayName}}</a></p>
-					<p>Touring until: {{artistData.onTourUntil | date}}</p>
-					<p></p>
-					<p></p>
+					<p> 
+						<span ng-show='artistData.onTourUntil'>Touring until: {{artistData.onTourUntil | date}}</span>
+						<span ng-show='!artistData.onTourUntil'>On tour: NO</span>
+					</p>
+					
 				</div>
 				
 				<div ng-show='errorMsg.length > 0'>
@@ -46,8 +54,8 @@
 		<div class='row'>
 			
 			<!--Songkick-->
-			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general' id='songkick_container'>
-				<p>(Songkick)</p>
+			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general' id='songkick_container' ng-show='areasInitialized'>
+				<h2>Events List</h2>
 				<events-list></events-list>
 			</div>
 			
@@ -61,9 +69,9 @@
 					<player-box></player-box>
 				</div>
 				
-				<div id='youtube_results_container'>
+				<div id='youtube_results_container' ng-show='areasInitialized'>
 
-					<p>(Youtube search)</p>
+					<h2>Recent videos</h2>
 					<videos-list></videos-list>
 				</div>
 				

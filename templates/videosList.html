@@ -1,1 +1,23 @@
-<span>Videos list will be here</span>
+<div class='loadingImg' ng-show='searching'></div>
+
+<div ng-show='videosAvailable'>
+	
+	<h4>Videos list available for <strong>{{artistName}}</strong></h4>
+	<p><strong>Total of {{totalVideosFound}}</strong> videos found (ordered by date)</p>
+	
+	<!-- div containing all the <video-item> elements -->
+	<div id='videos'>
+	BLAH
+	</div>
+	
+	<!--Pagination-->
+	<div ng-show='(pagingData.prevPageToken || pagingData.nextPageToken)'>
+		<div class='btn' ng-show='pagingData.prevPageToken' ng-click='searchYoutube(artistName, pagingData.prevPageToken)'>Previous</div>
+		<div class='btn' ng-show='pagingData.nextPageToken' ng-click='searchYoutube(artistName, pagingData.nextPageToken)'>Next</div>
+	</div>
+
+</div>
+
+<div ng-show='errorMsg.length > 0'>
+	<span>{{errorMsg}}</span>
+</div>

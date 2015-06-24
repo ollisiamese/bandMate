@@ -1,1 +1,21 @@
-<span>Events go here</span>
+<div class='loadingImg' ng-show='searching'></div>
+
+<div ng-show='showsAvailable'>
+	<h4>Events list available for <strong>{{artistName}}</strong></h4>
+	<p><strong>{{totalEntries}}</strong> upcoming shows</p>
+
+	<!-- div containing all the <concert> elements -->
+	<div id='concerts'>
+	BLAH
+	</div>
+	
+	<!--Pagination-->
+	<div ng-show='pagination'>
+		<div class='btn' ng-show='prevPageBtn' ng-click='searchEvents(artistId, currentPage - 1)'>Previous</div>
+		<div class='btn' ng-show='nextPageBtn' ng-click='searchEvents(artistId, currentPage + 1)'>Next</div>
+	</div>
+</div>
+
+<div ng-show='errorMsg.length > 0'>
+	<span>{{errorMsg}}</span>
+</div>
