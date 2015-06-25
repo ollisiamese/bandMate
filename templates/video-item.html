@@ -1,0 +1,17 @@
+<!-- Contents of a <video-item> element -->
+<div class="media">
+	
+	<div class="media-left">
+		<a>
+		<img class="media-object" ng-src="{{video.snippet.thumbnails.default.url}}" ng-click='alertVideoId(video.id.videoId)' title='play this video' alt="video.id.videoId">
+		</a>
+	</div>
+	
+	<div class="media-body">
+	
+		<span><strong>{{video.snippet.title}}</strong></span><br/>
+		<span>Published on: {{video.snippet.publishedAt | date}}</span><br/>
+	</div>
+</div>
+
+<div class='spacer'></div>

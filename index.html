@@ -34,8 +34,8 @@
 				
 				<div class='loadingImg' ng-show='searching'></div>
 				
-				<div ng-show='artistAvailable'>
-					Artist data available for <span>{{artistData.displayName}}</span>
+				<div ng-show='artistAvailable' class="alert alert-dismissible alert-success">
+	
 					<p>Artist: <a ng-attr-href='{{artistData.uri}}'>{{artistData.displayName}}</a></p>
 					<p> 
 						<span ng-show='artistData.onTourUntil'>Touring until: {{artistData.onTourUntil | date}}</span>
@@ -44,7 +44,7 @@
 					
 				</div>
 				
-				<div ng-show='errorMsg.length > 0'>
+				<div ng-show='errorMsg.length > 0' class='errorSpan'>
 					<span>{{errorMsg}}</span>
 				</div>
 			</section>

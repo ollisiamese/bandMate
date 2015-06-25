@@ -28,9 +28,9 @@
 			params: {
 				
 				part		: 'snippet',
-				order		: 'date',//'relevance',
+				order		: 'relevance',
 				//publishedAfter: format:RFC 3339 formatted date-time value (1970-01-01T00:00:00Z)
-				q			: bandName,
+				q			: bandName + ' artist',
 				type		: 'video',
 				key			: apiKey
 			},

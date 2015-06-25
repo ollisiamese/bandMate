@@ -9,6 +9,7 @@
 		return {
         
 			restrict: 'E',
+			//transclude: true,
 			scope: {},
 			templateUrl: 'templates/videosList.html',
 			controller: function($scope, $rootScope, search) {
@@ -86,11 +87,10 @@
 			
 				//	Callback function for handling the videos search results - SUCCESS
 				$scope.handleVideosListSuccess = function(results) {
-					console.log(results);
-					
+
 					//	Search is done, hide the loading img
 					$scope.searching = false;
-					
+			
 					if(results.pageInfo.totalResults > 0) {
 
 						$scope.videosAvailable	= true;
@@ -104,7 +104,16 @@
 						
 						$scope.errorMsg			= '';
 						console.log($scope.pagingData);
-					
+						
+						// If flag was set to keep focus on the pagination buttons after retrieving videos
+						/*
+						if($scope.pageFocus){
+							//alert(document.getElementById('vidPagination').getClientRects().left);	
+							//alert(document.getElementById('vidPagination').getClientRects().top);
+							window.scroll(document.getElementById('vidPagination').getClientRects().left, document.getElementById('vidPagination').getClientRects().top);
+							$scope.pageFocus = false;
+						}
+						*/
 					} else {
 					
 						//	Successful request but nothing found
@@ -125,11 +134,36 @@
 					$scope.videosAvailable		= false;
 					$scope.videosData			= null;
 				};
+				
+				$scope.alertVideoId = function(id) {
+					alert(id);
+				};
 			   
 			} // -end of controller
 		};
-        
-      });
-  
+    });
+	
+	//	A <video-item> directive (individual video)
+	vidListModule.directive('videoItem', function() {
+		
+		return {
+			
+			require: '^videosList',
+			restrict: 'E',
+			templateUrl: "templates/video-item.html"/*,
+			link: {
+				post: function(scope, iElement) {
+					if(scope.$last) {
+						
+						setTimeout(function() {alert(window.innerHeight); window.scrollTo(document.getElementById('vidPagination').getClientRects().left, document.getElementById('vidPagination').getClientRects().top);}, 500);
+					}
+					
+				}
+					
+			}
+			*/
+		};
+	});
+	
     
   })();

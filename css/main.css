@@ -1,17 +1,52 @@
 .general {
-	border: 1px solid black;
+	border			: 1px solid black;
+	margin-bottom	: 15px;
+}
+
+.form, #artistInfo {
+
+	margin			: 7px 0 7px 0;
+}
+
+.errorSpan {
+
+	background-color:#f2dede;
+	border-color	:#eed3d7;
+	color			: #b94a48;
+	margin-top		: 15px;
+	border-radius	: 4px;
+	padding			:8px;
+}
+
+.pagination {
+	padding			: 6px;
+
 }
 
 .center-block {
-  display: block;
-  margin-left: 10%;
-  margin-right: 10%;
-  width: 80%;
+  display			: block;
+  margin-left		: 10%;
+  margin-right		: 10%;
+  width				: 80%;
 }
 
 .loadingImg {
-	background: url('../img/ajax-loader.gif') no-repeat;
-	width: 30px;
-	height: 30px;
-	margin-left: 20%;
+	background		: url('../img/ajax-loader.gif') no-repeat;
+	width			: 30px;
+	height			: 30px;
+	margin-left		: 20%;
+}
+
+img.media-object:hover {
+	cursor			: pointer;
+}
+
+.spacer {
+	height			: 10px;
+	clear			: both;
+}
+
+.buttonDummy {
+	width			: 78px;
+	height			: 36px;
 }

@@ -9,6 +9,7 @@
       return {
         
         restrict: 'E',
+		//transclude: true,
         scope: {},
         templateUrl: 'templates/eventsList.html',
         controller: function($scope, $rootScope, search) {
@@ -109,7 +110,7 @@
 				if(data.resultsPage && data.resultsPage.results && parseInt(data.resultsPage.totalEntries, 10) > 0) {
 
 					$scope.showsAvailable	= true;
-					$scope.showsData		= data.resultsPage.results;
+					$scope.showsData		= data.resultsPage.results.event;
 					$scope.totalEntries		= data.resultsPage.totalEntries;
 					$scope.showsPerPage		= data.resultsPage.perPage;
 					$scope.errorMsg			= '';
@@ -168,7 +169,20 @@
         }// -end of controller
       };
         
-      });
+    });
+	  
+	//	A <concert> directive (individual upcoming event)
+	evListModule.directive('concert', function() {
+		
+		return {
+			
+			require: '^eventsList',
+			restrict: 'E',
+			templateUrl: "templates/concert.html"
+		};
+		
+	
+	});
   
     
   })();

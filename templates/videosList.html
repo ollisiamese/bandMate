@@ -1,23 +1,30 @@
+<!-- Contents of a <videos-list> element -->
+
 <div class='loadingImg' ng-show='searching'></div>
 
 <div ng-show='videosAvailable'>
 	
-	<h4>Videos list available for <strong>{{artistName}}</strong></h4>
-	<p><strong>Total of {{totalVideosFound}}</strong> videos found (ordered by date)</p>
+	<!-- Anchor for scrolling to this point on pagination navigation -->
+	<a name='videosListTop'></a>
+	
+	<h4>Videos relevant to <strong>{{artistName}}</strong> artist</h4>
+	<p>Total of <strong>{{totalVideosFound}}</strong> videos found (ordered by relevance)</p>
 	
 	<!-- div containing all the <video-item> elements -->
 	<div id='videos'>
-	BLAH
+		<video-item ng-repeat='video in videosData' class='videoItem'></video-item>
 	</div>
 	
 	<!--Pagination-->
-	<div ng-show='(pagingData.prevPageToken || pagingData.nextPageToken)'>
-		<div class='btn' ng-show='pagingData.prevPageToken' ng-click='searchYoutube(artistName, pagingData.prevPageToken)'>Previous</div>
-		<div class='btn' ng-show='pagingData.nextPageToken' ng-click='searchYoutube(artistName, pagingData.nextPageToken)'>Next</div>
+	<div class='pagination' tabindex='-1' ng-show='(pagingData.prevPageToken || pagingData.nextPageToken)'>
+		
+		<div class='btn buttonDummy' ng-show='!pagingData.prevPageToken'></div>
+		<a href='#videosListTop'><div class='btn btn-default' ng-show='pagingData.prevPageToken' ng-click='pageFocus=true; searchYoutube(artistName, pagingData.prevPageToken)'>Previous</div></a>
+		<a href='#videosListTop'><div class='btn btn-default' ng-show='pagingData.nextPageToken' ng-click='pageFocus=true; searchYoutube(artistName, pagingData.nextPageToken)'>Next</div></a>
 	</div>
 
 </div>
 
-<div ng-show='errorMsg.length > 0'>
+<div ng-show='errorMsg.length > 0' class='errorSpan'>
 	<span>{{errorMsg}}</span>
 </div>

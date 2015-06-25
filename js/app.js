@@ -18,9 +18,10 @@
 			//	Until the input is not blank, don't do anything
 			if($scope.searchQueryString && $scope.searchQueryString.length > 0) {
 				
+				/*
 				//	When starting a new search, tell the rest of the controllers to clear their contents
-				$rootScope.$emit('clearContents');
-				
+				//$rootScope.$emit('clearContents');
+				*/
 				//	Show the loading img while searching
 				$scope.searching = true;
 				
