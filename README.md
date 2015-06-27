@@ -1,7 +1,9 @@
 # bandMate
 This app lets you search for a band (or any music artist) and view their upcoming performances and relevant YouTube videos.
 
-The app uses 4 APIs:
+The app is built with AngularJS and Bootstrap. 
+
+BandMate uses 4 APIs:
 
 YouTube IFrame Player API, 
 YouTube Data API (v3), 
