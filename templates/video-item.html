@@ -2,16 +2,21 @@
 <div class="media">
 	
 	<div class="media-left">
+		
 		<a>
-		<img class="media-object" ng-src="{{video.snippet.thumbnails.default.url}}" ng-click='alertVideoId(video.id.videoId)' title='play this video' alt="video.id.videoId">
+			<img class="media-object" ng-src="{{video.snippet.thumbnails.default.url}}" ng-click='playClickedVideo(video.id.videoId)' title='play this video' alt="video.id.videoId">
 		</a>
+		
 	</div>
 	
 	<div class="media-body">
 	
 		<span><strong>{{video.snippet.title}}</strong></span><br/>
 		<span>Published on: {{video.snippet.publishedAt | date}}</span><br/>
+		<button class='btn btn-default btn-xs' ng-show='enableQueue' ng-click='addVideoToQueue({"id": video.id.videoId, "title": video.snippet.title})'>Add to player queue</button>
+	
 	</div>
+	
 </div>
 
 <div class='spacer'></div>

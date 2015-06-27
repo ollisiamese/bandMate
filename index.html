@@ -18,28 +18,39 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  
   <body ng-app='mainApp'>
-    <div class="container-fluid" id='topContainer' ng-controller='mainController'>
-		<!-- Search form and video player -->
+    
+	<div class="container-fluid" id='topContainer' ng-controller='mainController'>
+		
 		<div class='row general'>
-			<h1>BandMate (Band video and touring schedule search)</h1>
 			
-			<form name='searchForm' ng-submit='searchArtist()' novalidate>
-				<input type='text' name='nameInput' ng-model='searchQueryString' required/>
-				<input type='submit' id='searchBtn' value='Search' />
-				<span style='color:red' ng-show='searchForm.nameInput.$dirty && searchForm.nameInput.$error.required'>Please enter an artist's name</span>
+			<div class='container'>
+		
+				<h1>BandMate <small>(Band video and touring schedule search)</small></h1>
 				
-			</form>
+				<!-- Search form -->
+				<form name='searchForm' ng-submit='searchArtist()' novalidate>
+					
+					<input type='text' name='nameInput' ng-model='searchQueryString' required/>
+					<input type='submit' id='searchBtn' value='Search' />
+					<span style='color:red' ng-show='searchForm.nameInput.$dirty && searchForm.nameInput.$error.required'>Please enter an artist's name</span>
+					
+				</form>
+			
+			</div>
+			
+			<!-- Search results from Songkick artist search -->
 			<section id='artistInfo'>
 				
 				<div class='loadingImg' ng-show='searching'></div>
 				
 				<div ng-show='artistAvailable' class="alert alert-dismissible alert-success">
 	
-					<p>Artist: <a ng-attr-href='{{artistData.uri}}'>{{artistData.displayName}}</a></p>
+					<p><strong>Artist: </strong><a ng-attr-href='{{artistData.uri}}' target='_blank'>{{artistData.displayName}}</a></p>
 					<p> 
-						<span ng-show='artistData.onTourUntil'>Touring until: {{artistData.onTourUntil | date}}</span>
-						<span ng-show='!artistData.onTourUntil'>On tour: NO</span>
+						<span ng-show='artistData.onTourUntil'><strong>Touring until: </strong>{{artistData.onTourUntil | date}}</span>
+						<span ng-show='!artistData.onTourUntil'><strong>On tour: </strong>NO</span>
 					</p>
 					
 				</div>
@@ -53,48 +64,49 @@
 		
 		<div class='row'>
 			
-			<!--Songkick-->
+			<!--Songkick artist calendar search results-->
 			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general' id='songkick_container' ng-show='areasInitialized'>
-				<h2>Events List</h2>
+				
 				<events-list></events-list>
+				
 			</div>
 			
-			<!--Youtube results-->
+			<!--Youtube search results-->
 			<div class='col-lg-6 col-md-6 col-sm-12 col-xs-12 general'>
-				
-				<!--div to be replaced by the youtube player-->
-				<div id='player' class="center-block">
-					
-					<span>player here...</span>
-					<player-box></player-box>
-				</div>
 				
 				<div id='youtube_results_container' ng-show='areasInitialized'>
 
-					<h2>Recent videos</h2>
 					<videos-list></videos-list>
+					
 				</div>
 				
 			</div>
 		</div>
+		
+		<div class='row'>
+			
+			<footer>
+				
+				<div>Copyright &copy; <span id='currentYear'>{{year}}</span> Olli Siamese</div>
+				
+				<img src='img/songkick-logo.png'/>
+
+			</footer>
+		</div>
 	</div> <!-- /container-fluid -->
 	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
 	<script src='js/angular.min.js'></script>
 	<script src='api-keys/api_keys.js'></script>
-	<script src='js/youtube_player.js'></script>
-	<script src="js/youtube_area.js"></script>
 	
 	<script src="js/app.js"></script>
-	<script src="js/playerModule.js"></script>
 	<script src="js/eventsListModule.js"></script>
 	<script src="js/videosListModule.js"></script>
 	<script src="js/searchService.js"></script>
 	<script src="js/playerService.js"></script>
-	
 	
   </body>
 </html>

@@ -1,104 +1,124 @@
 (function() {
-	//	Search service that utilizes 3 APIs: Youtube Data API, Songkick Artist Search, and Songkick Artist Calendar 
+
+	/**	Search service that utilizes 3 APIs: Youtube Data API (v3), Songkick Artist Search, and Songkick Artist Calendar (Upcoming events) **/
 	
+	//	Declare the module
 	var searchServiceModule = angular.module('searchService', []);
 	
+	//	Add the 'search' service to the module
 	searchServiceModule.factory('search', ['$http', function($http) {
-	  
-	function greet() {
-	  
-		alert('hi');
-	};
 	
-	//	Optional param pageToken for retrieving next/prev videos
-	function searchYoutubeVideos(bandName, successCallback, errorCallback, pageToken) {
-		
-		var apiKey = API_KEYS.YouTube_key;
-		
-		var searchUrl = 'https://www.googleapis.com/youtube/v3/search';
-		
-		if(pageToken) {
+		/**
+		*	Searches for YouTube videos
+		*
+		*	@param (optional) string pageToken - for retrieving next/prev videos pages
+		*	@param string bandName - the query to search for
+		*	@param function successCallback - fn to call on successful $http request
+		*	@param function errorCallback - fn to call on error of the $http request
+		*/
+		function searchYoutubeVideos(bandName, successCallback, errorCallback, pageToken) {
 			
-			searchUrl += '?pageToken=' + pageToken;
-		}
-		
-		var req = {
-			url: searchUrl,//'https://www.googleapis.com/youtube/v3/search',
-			method: 'GET',
-			params: {
+			var apiKey = API_KEYS.YouTube_key;
+			
+			var searchUrl = 'https://www.googleapis.com/youtube/v3/search';
+			
+			if(pageToken) {
 				
-				part		: 'snippet',
-				order		: 'relevance',
-				//publishedAfter: format:RFC 3339 formatted date-time value (1970-01-01T00:00:00Z)
-				q			: bandName + ' artist',
-				type		: 'video',
-				key			: apiKey
+				searchUrl += '?pageToken=' + pageToken;
+			}
+			
+			var req = {
+				
+				url: searchUrl,
+				method: 'GET',
+				params: {
+					
+					part		: 'snippet',
+					order		: 'relevance',
+					//	Adding 'artist' to the youtube search query to make search more precise since this app 
+					//	only searches for musicians
+					q			: bandName + ' artist',
+					type		: 'video',
+					key			: apiKey
+				},
+			};
+			
+			$http(req)
+			.success(function(data) {successCallback(data);})
+			.error(function(err) {errorCallback(err);});
+		};
+	
+		/**
+		*	Searches for Artists on Songkick
+		*
+		*	@param string artistName - the query to search for
+		*	@param function successCallback - fn to call on successful $http request
+		*	@param function errorCallback - fn to call on error of the $http request
+		*/
+		function searchArtist(artistName, successCallback, errorCallback) {
+			
+			var apiKey = API_KEYS.Songkick_key;
+			
+			var req = {
+				
+				url				: 'http://api.songkick.com/api/3.0/search/artists.json',
+				method			: 'GET',
+				params			: {
+					
+					query: artistName,
+					apikey: apiKey
+				},
+			};
+		
+			$http(req)
+			.success(function(data) {successCallback(data);})
+			.error(function(err) {errorCallback(err);});
+		};
+		
+		
+		/**
+		*	Searches for Artist's upcoming events on Songkick
+		*
+		*	@param (optional) int pageNum - for retrieving next/prev pages
+		*	@param string artistId
+		*	@param function successCallback - fn to call on successful $http request
+		*	@param function errorCallback - fn to call on error of the $http request
+		*/
+		function searchArtistEvents(artistId, successCallback, errorCallback, pageNum) {
+		
+			var apiKey = API_KEYS.Songkick_key;
+			
+			var searchUrl = 'http://api.songkick.com/api/3.0/artists/' + artistId + '/calendar.json';
+			
+			if(pageNum) {
+			
+				searchUrl += '?page=' + pageNum;
+			}
+			
+			var req = {
+				
+				url				: searchUrl,
+				method			: 'GET',
+				params			: {
+		
+				//	As a rule in this app, retrieve 10 shows per page
+				per_page: 10, 
+				apikey	: apiKey
 			},
+			};
+			
+			$http(req)
+			.success(function(data) {successCallback(data);})
+			.error(function(err) {errorCallback(err);});
 		};
-		
-		$http(req)
-		.success(function(data) {successCallback(data);})
-		.error(function(err) {errorCallback(err);});
-	
-	};
-	
-	
-	function searchArtist(artistName, successCallback, errorCallback) {
-		
-		var apiKey = API_KEYS.Songkick_key;
-		
-		var req = {
-			url				: 'http://api.songkick.com/api/3.0/search/artists.json',
-			method			: 'GET',
-			params			: {
-				
-							query: artistName,
-							apikey: apiKey
-						},
-		};
-		
-		$http(req)
-		.success(function(data) {successCallback(data);})
-		.error(function(err) {errorCallback(err);});
-		
-	};
-	
-	
-	function searchArtistEvents(artistId, successCallback, errorCallback, pageNum) {
-	
-		var apiKey = API_KEYS.Songkick_key;
-		
-		var searchUrl = 'http://api.songkick.com/api/3.0/artists/' + artistId + '/calendar.json';
-		
-		if(pageNum) {
-		
-			searchUrl += '?page=' + pageNum;
-		}
-		
-		var req = {
-			url				: searchUrl,
-			method			: 'GET',
-			params			: {
-							
-							//	As a rule in this app, retrieve 10 shows per page
-							per_page: 10, 
-							apikey	: apiKey
-						},
-		};
-		
-		$http(req)
-		.success(function(data) {successCallback(data);})
-		.error(function(err) {errorCallback(err);});
-	
-	};
 	  
-	return {
-		
-		greet				: greet,
-		searchArtist		: searchArtist,
-		searchYoutubeVideos	: searchYoutubeVideos,
-		searchArtistEvents	: searchArtistEvents
-	};
+		//	Expose public methods of the service
+		return {
+			
+			searchArtist		: searchArtist,
+			searchYoutubeVideos	: searchYoutubeVideos,
+			searchArtistEvents	: searchArtistEvents
+		};
 	
 	}]);
 	

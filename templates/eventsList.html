@@ -1,13 +1,14 @@
 <!-- Contents of an <events-list> element -->
-<div class='loadingImg' ng-show='searching'></div>
 
+<!-- Anchor for scrolling to this point on pagination navigation -->
+<a name='eventsListTop'></a>
+	
+<h2 ng-show='showsAvailable || errorMsg.length > 0'>Events List</h2>
+	
 <div ng-show='showsAvailable'>
 	
-	<!-- Anchor for scrolling to this point on pagination navigation -->
-	<a name='eventsListTop'></a>
-	
 	<h4>Upcoming events for <strong>{{artistName}}</strong></h4>
-	<p><strong>{{totalEntries}}</strong> upcoming shows</p>
+	<p><strong>{{totalEntries}}</strong> upcoming show<span ng-show='totalEntries > 1'>s</span></p>
 
 	<!-- div containing all the <concert> elements -->
 	<div id='concerts'>
@@ -16,10 +17,12 @@
 	
 	<!--Pagination-->
 	<div ng-show='pagination' class='pagination'>
-		<div class='btn buttonDummy' ng-show='!prevPageBtn'></div>
+		
+		<div class='buttonDummy' ng-show='!prevPageBtn'>&nbsp;</div>
 		<a href='#eventsListTop'><div class='btn btn-default' ng-show='prevPageBtn' ng-click='searchEvents(artistId, currentPage - 1)'>Previous</div></a>
 		<a href='#eventsListTop'><div class='btn btn-default' ng-show='nextPageBtn' ng-click='searchEvents(artistId, currentPage + 1)'>Next</div></a>
 	</div>
+	
 </div>
 
 <div ng-show='errorMsg.length > 0' class='errorSpan'>

@@ -1,24 +1,35 @@
 <!-- Contents of a <concert> element -->
 <div>
+
 	<span>
 		<a ng-attr-href='{{concert.uri}}' target='_blank'><strong>{{concert.displayName}}<strong></a>
 	<span>
 
-	<span>({{concert.type}}) &nbsp;&nbsp;&nbsp;  </span>
+	<span>({{concert.type}})</span><br/>
 	
-	<span> {{concert.location.city}} &nbsp; &nbsp;</span>
+	<span> {{concert.location.city}} &nbsp; &nbsp;</span> <br/>
 	
 	<span ng-show='concert.performance.length > 1'>
+	
 		<div class="dropdown">
+		
 			<button id="dLabel" class='btn btn-warning btn-xs' type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<small>Lineup</small>
-			<span class="caret"></span>
+				
+				<small>Lineup</small>
+				<span class="caret"></span>
+				
 			</button>
+			
 			<ul class="dropdown-menu" aria-labelledby="dLabel">
+			
 				<li ng-repeat='performer in concert.performance'>{{performer.artist.displayName}}</li>
+				
 			</ul>
+			
 		</div>
+		
 	</span>
+	
 </div>
 
 <!--Date is either one date or a span of dates-->
@@ -33,7 +44,6 @@
 <!-- Venue -->
 <div ng-show='concert.venue.displayName != "Unknown venue"'>
 	<span><strong>Venue: </strong></span> <span>{{concert.venue.displayName}}</span>
-
 </div>
 
 <div class='spacer'></div>
