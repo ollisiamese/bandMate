@@ -43,9 +43,11 @@
 				},
 			};
 			
+			
 			$http(req)
 			.success(function(data) {successCallback(data);})
 			.error(function(err) {errorCallback(err);});
+			
 		};
 	
 		/**
@@ -59,18 +61,12 @@
 			
 			var apiKey = API_KEYS.Songkick_key;
 			
-			var req = {
-				
-				url				: 'http://api.songkick.com/api/3.0/search/artists.json',
-				method			: 'GET',
-				params			: {
-					
-					query: artistName,
-					apikey: apiKey
-				},
-			};
+			var searchUrl = 'http://api.songkick.com/api/3.0/search/artists.json?query='
+							+ artistName
+							+ '&apikey=' +apiKey
+							+ '&jsoncallback=JSON_CALLBACK';
 		
-			$http(req)
+			$http.jsonp(searchUrl)
 			.success(function(data) {successCallback(data);})
 			.error(function(err) {errorCallback(err);});
 		};
@@ -88,26 +84,20 @@
 		
 			var apiKey = API_KEYS.Songkick_key;
 			
-			var searchUrl = 'http://api.songkick.com/api/3.0/artists/' + artistId + '/calendar.json';
+			var searchUrl = 'http://api.songkick.com/api/3.0/artists/'
+							+ artistId
+							+ '/calendar.json'
+							+ '?per_page=10'
+							+ '&apikey=' + apiKey;
 			
 			if(pageNum) {
 			
-				searchUrl += '?page=' + pageNum;
+				searchUrl += '&page=' + pageNum;
 			}
 			
-			var req = {
-				
-				url				: searchUrl,
-				method			: 'GET',
-				params			: {
-		
-				//	As a rule in this app, retrieve 10 shows per page
-				per_page: 10, 
-				apikey	: apiKey
-			},
-			};
+			searchUrl += '&jsoncallback=JSON_CALLBACK';
 			
-			$http(req)
+			$http.jsonp(searchUrl)
 			.success(function(data) {successCallback(data);})
 			.error(function(err) {errorCallback(err);});
 		};
