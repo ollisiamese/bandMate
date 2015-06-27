@@ -3,10 +3,10 @@ This app lets you search for a band (or any music artist) and view their upcomin
 
 The app uses 4 APIs:
 
-YouTube IFrame Player API
-YouTube Data API (v3)
-Songkick Artist Search API
-Songkick Artist Calendar (Upcoming events) API
+YouTube IFrame Player API, 
+YouTube Data API (v3), 
+Songkick Artist Search API, 
+Songkick Artist Calendar (Upcoming events) API.
 
 When user enters the artist's name in the search box, a search for this artist is performed in the Songkick Atist database. 
 
