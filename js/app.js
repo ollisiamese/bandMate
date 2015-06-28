@@ -1,5 +1,5 @@
 (function(){
-	
+	'use strict';
 	//	Main app module with its dependencies on all the rest ofthe modules in the app
 	var bandMateApp = angular.module('mainApp', ['eventsListModule', 'videosListModule', 'searchService', 'playerService']);
 	

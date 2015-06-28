@@ -1,5 +1,5 @@
 (function(){
-    
+    'use strict';
     //	Create a module
 	var evListModule = angular.module('eventsListModule', []);
     

@@ -1,5 +1,5 @@
 (function() {
-	
+	'use strict';
 	/**	Service that utilizes Youtube IFrame Player API	**/
 	
 	//	Declare the module

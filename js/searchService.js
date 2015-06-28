@@ -1,5 +1,6 @@
 (function() {
-
+	'use strict';
+	
 	/**	Search service that utilizes 3 APIs: Youtube Data API (v3), Songkick Artist Search, and Songkick Artist Calendar (Upcoming events) **/
 	
 	//	Declare the module
