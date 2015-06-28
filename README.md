@@ -1,4 +1,4 @@
-# bandMate
+# band_mate
 This app lets you search for a band (or any music artist) and view their upcoming performances and relevant YouTube videos.
 
 The app is built with AngularJS and Bootstrap. 
@@ -32,6 +32,6 @@ Once a video player is started, it will stay open while user performs other sear
 by clicking the "X" button near the player's top right corner (this will also clear the player's queue!) or end their session in the app.
 The video results display 5 videos per page.
 
-Demo: <a href='http://www.ogeinitz.com/bandMate' target='_blank'>BandMate</a>
+Demo: <a href='http://www.ogeinitz.com/band_mate' target='_blank'>BandMate</a>
 
 
