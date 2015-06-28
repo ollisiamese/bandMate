@@ -32,6 +32,6 @@ Once a video player is started, it will stay open while user performs other sear
 by clicking the "X" button near the player's top right corner (this will also clear the player's queue!) or end their session in the app.
 The video results display 5 videos per page.
 
-Demo: <a href='http://www.ogeinitz.com/band_mate' target='_blank'>BandMate</a>
+Demo: <a href='http://www.ogeinitz.com/bandmate' target='_blank'>BandMate</a>
 
 
