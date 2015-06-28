@@ -1,4 +1,4 @@
-# band_mate
+# BandMate
 This app lets you search for a band (or any music artist) and view their upcoming performances and relevant YouTube videos.
 
 The app is built with AngularJS and Bootstrap. 
