@@ -38,9 +38,9 @@
 					order		: 'relevance',
 					//	Adding 'artist' to the youtube search query to make search more precise since this app 
 					//	only searches for musicians
-					q			: bandName + ' artist',
+					q		: bandName + ' artist',
 					type		: 'video',
-					key			: apiKey
+					key		: apiKey
 				},
 			};
 			
