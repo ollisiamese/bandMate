@@ -60,7 +60,7 @@
 					$scope.areasInitialized = true;
 				}
 				
-				$scope.artistAvailable	= true;
+				$scope.artistAvailable		= true;
 				
 				//	Grab the first one as it is the most relevant one
 				$scope.artistData		= data.resultsPage.results.artist[0];
@@ -82,7 +82,7 @@
 			} else {
 			
 				//	When request was successful but no artist under such name was found (example: 'muah')
-				$scope.artistAvailable	= false;
+				$scope.artistAvailable		= false;
 				$scope.errorMsg			= "The search returned no artists named \"" + $scope.searchedName + "\"";
 				$scope.artistData		= null;
 				
@@ -103,7 +103,7 @@
 			
 			//	Set an error message
 			$scope.errorMsg				= "Apologies, your search could not be performed at this time";
-			$scope.artistAvailable		= false;
+			$scope.artistAvailable			= false;
 			$scope.artistData			= null;
 			
 			//	If error in search occured, then cannot perform search for events
