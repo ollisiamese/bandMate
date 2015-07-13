@@ -18,7 +18,7 @@
 			controller: function($scope, $rootScope, search) {
 			   
 				//	Initialize the 2 vars so that their corresponding div's are hidden
-				$scope.showsAvailable	= false;
+				$scope.showsAvailable		= false;
 				$scope.errorMsg			= '';
 				
 				//	Event listener for fetching the artist data that is emitted from mainController on successful search for artist name
@@ -89,7 +89,7 @@
 						
 					} else {
 				
-						$scope.errorMsg			= "Apologies, your search could not be performed at this time";
+						$scope.errorMsg		= "Apologies, your search could not be performed at this time";
 						$scope.showsAvailable	= false;
 					}
 				
@@ -103,7 +103,7 @@
 					
 					if(data.resultsPage && data.resultsPage.results && parseInt(data.resultsPage.totalEntries, 10) > 0) {
 
-						$scope.showsAvailable	= true;
+						$scope.showsAvailable		= true;
 						$scope.showsData		= data.resultsPage.results.event;
 						$scope.totalEntries		= data.resultsPage.totalEntries;
 						$scope.showsPerPage		= data.resultsPage.perPage;
@@ -142,7 +142,7 @@
 					} else {
 					
 						//	Successful request but nothing found
-						$scope.showsAvailable	= false;
+						$scope.showsAvailable		= false;
 						$scope.errorMsg			= "The search returned no videos for \"" + $scope.artistName + "\"";
 						$scope.showsData		= null;
 					}
@@ -156,7 +156,7 @@
 					
 					//	Set an error message
 					$scope.errorMsg				= "Apologies, your search could not be performed at this time";
-					$scope.showsAvailable		= false;
+					$scope.showsAvailable			= false;
 					$scope.showsData			= null;
 				};
 
