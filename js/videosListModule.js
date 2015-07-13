@@ -18,7 +18,7 @@
 			controller: function($scope, $rootScope, search, YtPlayer) {
 
 				//	Initialize the 2 vars so that their corresponding div's are hidden
-				$scope.videosAvailable	= false;
+				$scope.videosAvailable		= false;
 				$scope.errorMsg			= '';
 				
 				//	Initialize reference to player as null
@@ -84,7 +84,7 @@
 						
 					} else {
 						
-						$scope.errorMsg			= "Apologies, your search could not be performed at this time";
+						$scope.errorMsg		= "Apologies, your search could not be performed at this time";
 						$scope.videosAvailable	= false;
 					}
 				};
@@ -98,23 +98,23 @@
 					if(results.pageInfo.totalResults > 0) {
 
 						$scope.videosAvailable	= true;
-						$scope.videosData		= results.items;
+						$scope.videosData	= results.items;
 						$scope.totalVideosFound = results.pageInfo.totalResults;
 						
-						$scope.pagingData		= {
+						$scope.pagingData	= {
 							
 							'prevPageToken': results.prevPageToken,
 							'nextPageToken': results.nextPageToken
 						};
 						
-						$scope.errorMsg			= '';
+						$scope.errorMsg		= '';
 
 					} else {
 					
 						//	Successful request but nothing found
 						$scope.videosAvailable	= false;
-						$scope.errorMsg			= "The search returned no videos for \"" + $scope.artistName + "\"";
-						$scope.videosData		= null;
+						$scope.errorMsg		= "The search returned no videos for \"" + $scope.artistName + "\"";
+						$scope.videosData	= null;
 					}
 				};
 				
@@ -125,9 +125,9 @@
 				$scope.handleVideosListFailure = function(errorData) {
 					
 					//	Set an error message
-					$scope.errorMsg				= "Apologies, your search could not be performed at this time";
+					$scope.errorMsg			= "Apologies, your search could not be performed at this time";
 					$scope.videosAvailable		= false;
-					$scope.videosData			= null;
+					$scope.videosData		= null;
 				};
 				
 				/**
@@ -177,7 +177,7 @@
 						$scope.playerErrorMessage	= '';
 						
 						//	Save the reference to the player to use
-						$scope.playerObject			= vidPlayer;
+						$scope.playerObject		= vidPlayer;
 						
 						//	Player is embedded and since it was just created, it is playing the video it was created with, so enable queuing
 						$scope.enableQueue = true;
