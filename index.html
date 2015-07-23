@@ -8,9 +8,11 @@
     <title>BandMate app</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/simplex-theme.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+	<script src='js/angular.min.js'></script>
+	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,7 +25,7 @@
     
 	<div class="container-fluid" id='topContainer' ng-controller='mainController'>
 		
-		<div class='row general'>
+		<div class='row general' ng-cloak>
 			
 			<div class='container'>
 		
@@ -99,7 +101,7 @@
     <script src="js/jquery-1.11.3.min.js"></script>
     
     <script src="js/bootstrap.min.js"></script>
-    <script src='js/angular.min.js'></script>
+   
     <script src='api-keys/api_keys.js'></script>
 	
     <script src="js/app.js"></script>
