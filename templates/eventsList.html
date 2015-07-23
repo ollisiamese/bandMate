@@ -5,7 +5,7 @@
 	
 <h2 ng-show='showsAvailable || errorMsg.length > 0'>Events List</h2>
 	
-<div ng-show='showsAvailable'>
+<div ng-show='showsAvailable' ng-cloak>
 	
 	<h4>Upcoming events for <strong>{{artistName}}</strong></h4>
 	<p><strong>{{totalEntries}}</strong> upcoming show<span ng-show='totalEntries > 1'>s</span></p>
